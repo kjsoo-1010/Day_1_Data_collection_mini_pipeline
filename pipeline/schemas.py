@@ -24,3 +24,17 @@ class IPInfo(BaseModel):
     isp: str
     org: str | None = None
     as_number: str | None = Field(default=None, alias="as")
+
+
+class CountryInfo(BaseModel):
+    name: str
+    capital: str
+    region: str
+    subregion: str
+    population: int
+    area: float
+    alpha2_code: str
+    alpha3_code: str
+    languages: str
+    currencies: str
+    flag_png: str

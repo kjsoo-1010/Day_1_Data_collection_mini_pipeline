@@ -2,7 +2,7 @@ import asyncio
 
 import httpx
 
-from .config import IP_URL, TIMEOUT, WEATHER_URL
+from .config import COUNTRY_URL, IP_URL, TIMEOUT, WEATHER_URL
 
 
 async def fetch_weather(client: httpx.AsyncClient) -> dict:
@@ -17,9 +17,16 @@ async def fetch_ip(client: httpx.AsyncClient) -> dict:
     return resp.json()
 
 
-async def fetch_all() -> tuple[dict, dict]:
+async def fetch_country(client: httpx.AsyncClient) -> dict:
+    resp = await client.get(COUNTRY_URL, timeout=TIMEOUT)
+    resp.raise_for_status()
+    return resp.json()
+
+
+async def fetch_all() -> tuple[dict, dict, dict]:
     async with httpx.AsyncClient() as client:
         return await asyncio.gather(
             fetch_weather(client),
             fetch_ip(client),
+            fetch_country(client),
         )

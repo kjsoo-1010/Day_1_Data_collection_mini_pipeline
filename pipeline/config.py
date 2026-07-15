@@ -7,6 +7,7 @@ WEATHER_URL = (
     "&forecast_days=3&timezone=Asia/Seoul"
 )
 IP_URL = "http://ip-api.com/json/8.8.8.8"
+COUNTRY_URL = "https://countries.dev/alpha/KR"
 
 TIMEOUT = 10.0
 

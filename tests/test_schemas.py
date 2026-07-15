@@ -4,8 +4,8 @@ from pathlib import Path
 import pytest
 from pydantic import ValidationError
 
-from pipeline.schemas import IPInfo, WeatherHourlyRecord
-from pipeline.transform import transform_ip, transform_weather
+from pipeline.schemas import CountryInfo, IPInfo, WeatherHourlyRecord
+from pipeline.transform import transform_country, transform_ip, transform_weather
 
 FIXTURES_DIR = Path(__file__).parent / "fixtures"
 
@@ -18,6 +18,11 @@ def weather_raw() -> dict:
 @pytest.fixture
 def ip_raw() -> dict:
     return json.loads((FIXTURES_DIR / "ip_sample.json").read_text())
+
+
+@pytest.fixture
+def country_raw() -> dict:
+    return json.loads((FIXTURES_DIR / "country_sample.json").read_text())
 
 
 def test_weather_hourly_record_valid():
@@ -67,3 +72,66 @@ def test_ip_info_wrong_type_raises(ip_raw):
 def test_transform_ip_invalid_returns_none(ip_raw):
     del ip_raw["status"]
     assert transform_ip(ip_raw) is None
+
+
+def test_country_info_valid():
+    country = CountryInfo(
+        name="Korea (Republic of)",
+        capital="Seoul",
+        region="Asia",
+        subregion="Eastern Asia",
+        population=51780579,
+        area=100210.0,
+        alpha2_code="KR",
+        alpha3_code="KOR",
+        languages="Korean",
+        currencies="KRW",
+        flag_png="https://flagcdn.com/w320/kr.png",
+    )
+    assert country.alpha2_code == "KR"
+    assert country.population == 51780579
+
+
+def test_country_info_missing_field_raises():
+    with pytest.raises(ValidationError):
+        CountryInfo(
+            capital="Seoul",
+            region="Asia",
+            subregion="Eastern Asia",
+            population=51780579,
+            area=100210.0,
+            alpha2_code="KR",
+            alpha3_code="KOR",
+            languages="Korean",
+            currencies="KRW",
+            flag_png="https://flagcdn.com/w320/kr.png",
+        )
+
+
+def test_country_info_wrong_type_raises():
+    with pytest.raises(ValidationError):
+        CountryInfo(
+            name="Korea (Republic of)",
+            capital="Seoul",
+            region="Asia",
+            subregion="Eastern Asia",
+            population="not-a-number",
+            area=100210.0,
+            alpha2_code="KR",
+            alpha3_code="KOR",
+            languages="Korean",
+            currencies="KRW",
+            flag_png="https://flagcdn.com/w320/kr.png",
+        )
+
+
+def test_transform_country_from_fixture(country_raw):
+    country = transform_country(country_raw)
+    assert isinstance(country, CountryInfo)
+    assert country.alpha2_code == "KR"
+    assert country.languages == "Korean"
+
+
+def test_transform_country_missing_key_returns_none(country_raw):
+    del country_raw["population"]
+    assert transform_country(country_raw) is None
