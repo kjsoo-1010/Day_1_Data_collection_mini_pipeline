@@ -1,11 +1,19 @@
+#---------------------------------
+# 작성목적: 데이터 수집 미니 파이프라인에서 수집된 데이터 및 저장/불러오기 성능 벤치마크
+#
+# 작성일: 2026.07.15
+# 설명: 
+# 1. 데이터 수집 미니 파이프라인 검증 단계
+# 2. CSV 및 Parquet 형식으로 저장/불러오기 성능 벤치마크
+#---------------------------------
+
 import time
 from pathlib import Path
-
 import pandas as pd
 
 from .storage import load_csv, load_parquet, save_csv, save_parquet
 
-
+# CSV, Parquet 저장/불러오기 성능 벤치마크 함수 정의
 def run_benchmark(datasets: dict[str, pd.DataFrame], out_dir: Path) -> pd.DataFrame:
     rows = []
     for name, df in datasets.items():
