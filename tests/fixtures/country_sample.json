@@ -1,0 +1,53 @@
+{
+  "area": 100210,
+  "cioc": "KOR",
+  "flag": "\ud83c\uddf0\ud83c\uddf7",
+  "gini": 31.4,
+  "name": "Korea (Republic of)",
+  "flags": {
+    "png": "https://flagcdn.com/w320/kr.png",
+    "svg": "https://flagcdn.com/kr.svg"
+  },
+  "latlng": [
+    37,
+    127.5
+  ],
+  "region": "Asia",
+  "borders": [
+    "PRK"
+  ],
+  "capital": "Seoul",
+  "demonym": "South Korean",
+  "languages": [
+    {
+      "name": "Korean",
+      "iso639_1": "ko",
+      "iso639_2": "kor",
+      "nativeName": "\ud55c\uad6d\uc5b4"
+    }
+  ],
+  "subregion": "Eastern Asia",
+  "timezones": [
+    "UTC+09:00"
+  ],
+  "alpha2Code": "KR",
+  "alpha3Code": "KOR",
+  "currencies": [
+    {
+      "code": "KRW",
+      "name": "South Korean won",
+      "symbol": "\u20a9"
+    }
+  ],
+  "nativeName": "\ub300\ud55c\ubbfc\uad6d",
+  "population": 51780579,
+  "independent": true,
+  "numericCode": "410",
+  "callingCodes": [
+    "82"
+  ],
+  "topLevelDomain": [
+    ".kr"
+  ],
+  "populationDensity": 516.72
+}
