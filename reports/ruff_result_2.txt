@@ -1,0 +1,130 @@
+warning: No `requires-python` value found in the workspace. Defaulting to `>=3.13`.
+I001 [*] Import block is un-sorted or un-formatted
+  --> main.py:11:1
+   |
+11 | / import asyncio
+12 | | import pandas as pd
+13 | |
+14 | | from pipeline.benchmark import run_benchmark
+15 | | from pipeline.config import DATA_DIR, REPORTS_DIR
+16 | | from pipeline.fetch import fetch_all
+17 | | from pipeline.schemas import CountryInfo, IPInfo
+18 | | from pipeline.transform import transform_country, transform_ip, transform_weather
+   | |_________________________________________________________________________________^
+   |
+help: Organize imports
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> pipeline\benchmark.py:10:1
+   |
+ 8 |   #---------------------------------
+ 9 |
+10 | / import time
+11 | | from pathlib import Path
+12 | | import pandas as pd
+13 | |
+14 | | from .storage import load_csv, load_parquet, save_csv, save_parquet
+   | |___________________________________________________________________^
+15 |
+16 |   # CSV, Parquet 저장/불러오기 성능 벤치마크 함수 정의
+   |
+help: Organize imports
+
+E401 [*] Multiple imports on one line
+  --> pipeline\fetch.py:11:1
+   |
+ 9 | #---------------------------------
+10 |
+11 | import asyncio, httpx
+   | ^^^^^^^^^^^^^^^^^^^^^
+12 | from .config import COUNTRY_URL, IP_URL, TIMEOUT, WEATHER_URL
+   |
+help: Split imports
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> pipeline\fetch.py:11:1
+   |
+ 9 |   #---------------------------------
+10 |
+11 | / import asyncio, httpx
+12 | | from .config import COUNTRY_URL, IP_URL, TIMEOUT, WEATHER_URL
+   | |_____________________________________________________________^
+   |
+help: Organize imports
+
+E501 Line too long (158 > 100)
+ --> pipeline\schemas.py:7:90
+  |
+5 | …
+6 | …
+7 | …(tests/fixtures 의 {API}_sample.json 참고)에서 필요한 필드 추출하여 Pydantic 모델 정의
+  |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+8 | …
+  |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> pipeline\schemas.py:10:1
+   |
+ 8 |   #---------------------------------
+ 9 |
+10 | / from datetime import datetime
+11 | | from pydantic import BaseModel, ConfigDict, Field
+   | |_________________________________________________^
+   |
+help: Organize imports
+
+E501 Line too long (103 > 100)
+  --> pipeline\schemas.py:36:90
+   |
+34 |     isp: str
+35 |     org: str | None = None
+36 |     as_number: str | None = Field(default=None, alias="as") # as는 파이썬 예약어이므로 as_number로 변경
+   |                                                                                                      ^^
+37 |
+38 | ## 3. Countries API (한국 국가 정보) Pydantic v2 모델 정의
+   |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> pipeline\storage.py:10:1
+   |
+ 8 |   #---------------------------------
+ 9 |
+10 | / from pathlib import Path
+11 | | import pandas as pd
+   | |___________________^
+   |
+help: Organize imports
+
+E501 Line too long (107 > 100)
+ --> pipeline\transform.py:2:65
+  |
+1 | #---------------------------------
+2 | # 작성목적: 데이터 수집 미니 파이프라인에서 수집한 JSON 데이터를 Pydantic 모델로 변환 및 검증하는 함수 정의
+  |                                                                                                     ^^^^^^^
+3 | #
+4 | # 작성일: 2026.07.15
+  |
+
+E501 Line too long (158 > 100)
+ --> pipeline\transform.py:7:90
+  |
+5 | …
+6 | …
+7 | …(tests/fixtures 의 {API}_sample.json 참고)에서 필요한 필드 추출하여 Pydantic 모델 정의
+  |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+8 | …
+  |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> pipeline\transform.py:11:1
+   |
+11 | / from pydantic import ValidationError
+12 | | from .schemas import CountryInfo, IPInfo, WeatherHourlyRecord
+   | |_____________________________________________________________^
+13 |
+14 |   ## Open-Meteo API 
+   |
+help: Organize imports
+
+Found 11 errors.
+[*] 7 fixable with the `--fix` option.

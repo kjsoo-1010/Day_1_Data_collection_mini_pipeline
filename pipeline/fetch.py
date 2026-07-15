@@ -8,7 +8,10 @@
 # (Sample : tests/fixtures/{API}_sample.json)
 #---------------------------------
 
-import asyncio, httpx
+import asyncio
+
+import httpx
+
 from .config import COUNTRY_URL, IP_URL, TIMEOUT, WEATHER_URL
 
 

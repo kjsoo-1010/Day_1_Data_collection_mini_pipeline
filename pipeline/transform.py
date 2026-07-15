@@ -9,7 +9,9 @@
 
 
 from pydantic import ValidationError
+
 from .schemas import CountryInfo, IPInfo, WeatherHourlyRecord
+
 
 ## Open-Meteo API 
 def transform_weather(raw: dict) -> list[WeatherHourlyRecord]:
