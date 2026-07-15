@@ -1,9 +1,15 @@
 import httpx
 
-from .config import TIMEOUT, WEATHER_URL
+from .config import IP_URL, TIMEOUT, WEATHER_URL
 
 
 async def fetch_weather(client: httpx.AsyncClient) -> dict:
     resp = await client.get(WEATHER_URL, timeout=TIMEOUT)
+    resp.raise_for_status()
+    return resp.json()
+
+
+async def fetch_ip(client: httpx.AsyncClient) -> dict:
+    resp = await client.get(IP_URL, timeout=TIMEOUT)
     resp.raise_for_status()
     return resp.json()
