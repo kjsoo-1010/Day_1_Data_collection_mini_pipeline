@@ -3,7 +3,7 @@ import asyncio
 import pandas as pd
 
 from pipeline.benchmark import run_benchmark
-from pipeline.config import DATA_DIR
+from pipeline.config import DATA_DIR, REPORTS_DIR
 from pipeline.fetch import fetch_all
 from pipeline.schemas import CountryInfo, IPInfo
 from pipeline.transform import transform_country, transform_ip, transform_weather
@@ -31,12 +31,19 @@ def main() -> None:
         datasets["country"] = pd.DataFrame([country_record.model_dump()])
 
     results = run_benchmark(datasets, DATA_DIR)
-    print("\nRead/Write benchmark (seconds):")
-    print(results.pivot(index=["dataset", "format"], columns="operation", values="seconds"))
-    print(
-        "\n(ip/country datasets have only 1 row, so their timing mostly reflects fixed"
+    comparison = results.pivot(index=["dataset", "format"], columns="operation", values="seconds")
+    caveat = (
+        "(ip/country datasets have only 1 row, so their timing mostly reflects fixed"
         " overhead, not format scaling.)"
     )
+
+    print("\nRead/Write benchmark (seconds):")
+    print(comparison)
+    print(f"\n{caveat}")
+
+    REPORTS_DIR.mkdir(parents=True, exist_ok=True)
+    report_path = REPORTS_DIR / "benchmark_result.txt"
+    report_path.write_text(f"Read/Write benchmark (seconds):\n{comparison}\n\n{caveat}\n")
 
 
 if __name__ == "__main__":

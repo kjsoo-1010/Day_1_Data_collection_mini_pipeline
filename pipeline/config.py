@@ -12,3 +12,4 @@ COUNTRY_URL = "https://countries.dev/alpha/KR"
 TIMEOUT = 10.0
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data" / "processed"
+REPORTS_DIR = Path(__file__).resolve().parent.parent / "reports"

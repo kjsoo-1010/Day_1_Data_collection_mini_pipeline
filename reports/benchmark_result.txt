@@ -1,0 +1,11 @@
+Read/Write benchmark (seconds):
+operation            read     write
+dataset format                     
+country csv      0.000287  0.000278
+        parquet  0.000731  0.000555
+ip      csv      0.000408  0.000622
+        parquet  0.000971  0.000904
+weather csv      0.001141  0.003865
+        parquet  0.032248  0.035712
+
+(ip/country datasets have only 1 row, so their timing mostly reflects fixed overhead, not format scaling.)
