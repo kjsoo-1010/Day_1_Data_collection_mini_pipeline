@@ -1,5 +1,14 @@
-import asyncio
+#---------------------------------
+# 작성목적: 데이터 수집 미니 파이프라인을 실행하는 main.py
+#
+# 작성일: 2026.07.15
+# 설명: 
+# 1. 데이터 수집 미니 파이프라인 실행
+# 2. CSV 및 Parquet 형식으로 저장/불러오기 성능 벤치마크 결과 저장
+#---------------------------------
 
+
+import asyncio
 import pandas as pd
 
 from pipeline.benchmark import run_benchmark
