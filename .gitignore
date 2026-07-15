@@ -1,6 +1,11 @@
+# 가상 환경
 /.venv
 /venv
+
+# data
 /data/processed
+
+# cache
 __pycache__/
 *.pyc
 .pytest_cache/
