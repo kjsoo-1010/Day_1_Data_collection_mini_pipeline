@@ -1,11 +1,3 @@
-## 1. `pipeline/config.py` : API URL, 타임아웃, 저장 경로 상수.
-
-## 2. `pipeline/schemas.py` : `WeatherHourlyRecord`, `IPInfo` pydantic 모델 정의.
-
-## 3. `pipeline/fetch.py` : 
-
-----
-
 # 데이터 수집 미니 파이프라인
 1. pipeline
 - config.py 에서 불러올 api 데이터 정보값 저장
